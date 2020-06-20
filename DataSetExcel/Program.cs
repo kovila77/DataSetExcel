@@ -63,7 +63,7 @@ namespace DataSetExcel
             Console.WriteLine("Название листа, откуда берётся информация должно быть: " + sheetName);
             string fName = @"C:\Users\35498\source\repos\DataSetExcel\Vse_dannye.xlsx"; // Файл Excel, с которым производится работа
             Console.WriteLine("Выбрать файл?: " + fName + " ? (n for no)");
-            if (Console.ReadLine() == "n")
+            if (Console.ReadLine() != "n")
             {
                 Console.WriteLine("Введите файл");
                 fName = Console.ReadLine();
