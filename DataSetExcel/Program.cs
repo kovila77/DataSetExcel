@@ -17,7 +17,6 @@ namespace DataSetExcel
         static DateTime DTDay = new DateTime();
         static DateTime DTEvening = new DateTime();
 
-
         static void Main(string[] args)
         {
             var ExcelApp = new Excel.Application();
@@ -26,11 +25,12 @@ namespace DataSetExcel
             ExcelApp.Interactive = false;
             ExcelApp.IgnoreRemoteRequests = true;
 
-
             DTMorning = DTMorning.AddHours(6);
             DTDay = DTDay.AddHours(12);
             DTEvening = DTEvening.AddHours(18);
             //var Month = Enumerable.Range(1, 12).Select(i => new { I = i, M = DateTimeFormatInfo.CurrentInfo.GetMonthName(i) });
+
+            // Массив праздников в ноябре 2018 и 2019
             DateTime[] PartyMassive = new DateTime[] {
                 DateTime.Parse("04.11.2018"),
                 DateTime.Parse("05.11.2018"),
@@ -56,10 +56,11 @@ namespace DataSetExcel
 
             List<string> dayOfWeekMassive = new List<string>(new string[] { "понедельник", "вторник", "среда", "четверг", "пятница", "суббота", "воскресенье", });
 
-            string fName = @"C:\Users\35498\source\repos\DataSetExcel\Vse_dannye.xlsx";
-            string sheetName = @"Data";
-            string sheetResultName = @"DataResult";
-            string sheetExcplanation = @"Excplanation";
+            string fName = @"C:\Users\35498\source\repos\DataSetExcel\Vse_dannye.xlsx"; // Файл Excel, с которым производится работа
+            string sheetName = @"Data";                 // Название листа откуда берётся информация
+            string sheetResultName = @"DataResult";     // Название листа откуда куда поместятся преобразованные данные
+            string sheetExcplanation = @"Excplanation"; // Название листа где будет обозначение данных
+            // Название колонок, находящееся в первой строки листа Excel, откуда будут поступать данные
             string COLUMN_DATA_NAME_FROM = "Дата";
             string COLUMN_TIME_NAME_FROM = "Время";
             string COLUMN_TYPEDTP_NAME_FROM = "Вид ДТП";
@@ -74,11 +75,11 @@ namespace DataSetExcel
             string COLUMN_POINT_NAME_FROM = "Является местом концентрации ДТП";
             string COLUMN_BAD_NAME_FROM = "Непосредственные нарушения ПДД";
 
+            // Название колонок, которые будут в результирующем листе
             string COLUMN_DAY_NAME = "День";
             string COLUMN_MONTH_NAME = "Месяц";
             string COLUMN_WEEK_NAME = "День недели";
             string COLUMN_PARTY_NAME = "Праздник";
-            //string COLUMN_TIMEOFDAY_NAME = "Время дня";
             string COLUMN_TIMEOFDAY_NAME = "Время";
             string COLUMN_TYPEDTP_NAME = "Вид ДТП";
             string COLUMN_ROAD_NAME = "Дорога";
@@ -92,9 +93,8 @@ namespace DataSetExcel
             string COLUMN_POINT_NAME = "Является местом концентрации ДТП";
             string COLUMN_BAD_NAME = "Непосредственные нарушения ПДД";
 
+            // Название колонок, обозначающих сопоставленное ячейке число
             string SUFFIX_IN_EXPLANATION = "Число";
-
-            int columnIndex = 0;
 
             var wb = ExcelApp.Workbooks.Open(fName);
 
@@ -164,7 +164,7 @@ namespace DataSetExcel
                 StringDifferentValueHandler sdvhWeekDays = new StringDifferentValueHandler();
                 sdvhWeekDays.Add(dayOfWeekMassive.ToArray());
 
-                columnIndex++;
+                int columnIndex = 1;
                 resultSheet.Cells[1, columnIndex] = COLUMN_DAY_NAME;
                 int res_COLUMN_DAY = columnIndex;
                 columnIndex++;
