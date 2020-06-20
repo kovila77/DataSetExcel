@@ -56,10 +56,20 @@ namespace DataSetExcel
 
             List<string> dayOfWeekMassive = new List<string>(new string[] { "понедельник", "вторник", "среда", "четверг", "пятница", "суббота", "воскресенье", });
 
-            string fName = @"C:\Users\35498\source\repos\DataSetExcel\Vse_dannye.xlsx"; // Файл Excel, с которым производится работа
             string sheetName = @"Data";                 // Название листа откуда берётся информация
             string sheetResultName = @"DataResult";     // Название листа откуда куда поместятся преобразованные данные
             string sheetExcplanation = @"Excplanation"; // Название листа где будет обозначение данных
+
+            Console.WriteLine("Название листа, откуда берётся информация должно быть: " + sheetName);
+            string fName = @"C:\Users\35498\source\repos\DataSetExcel\Vse_dannye.xlsx"; // Файл Excel, с которым производится работа
+            Console.WriteLine("Выбрать файл?: " + fName + " ? (n for no)");
+            if (Console.ReadLine() == "n")
+            {
+                Console.WriteLine("Введите файл");
+                fName = Console.ReadLine();
+            }
+            Console.WriteLine("выполнение..");
+
             // Название колонок, находящееся в первой строки листа Excel, откуда будут поступать данные
             string COLUMN_DATA_NAME_FROM = "Дата";
             string COLUMN_TIME_NAME_FROM = "Время";
@@ -329,7 +339,8 @@ namespace DataSetExcel
             ExcelApp.Interactive = true;
             ExcelApp.IgnoreRemoteRequests = false;
             ExcelApp.Visible = true;
-            Console.ReadLine();
+            Console.WriteLine("Для выхода нажмиту любую клавишу...");
+            Console.ReadKey();
         }
         public static string RmvExtrSpaces(string str)
         {

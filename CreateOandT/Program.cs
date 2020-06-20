@@ -22,10 +22,19 @@ namespace CreateOandT
             ExcelApp.IgnoreRemoteRequests = true;
 
 
-            string fName = @"C:\Users\35498\source\repos\DataSetExcel\Neuro\Vse_dannye.xlsx"; // Файл Excel, с которым производится работа
             string sheetName = @"DataResult";                 // Название листа откуда берётся информация
             string sheetTeachName = @"О";     // Название листа откуда куда поместятся преобразованные данные
             string sheetTestName = @"Т"; // Название листа где будет обозначение данных
+
+            Console.WriteLine("Название листа, откуда берётся информация должно быть: " + sheetName);
+            string fName = @"C:\Users\35498\source\repos\DataSetExcel\Neuro\Vse_dannye.xlsx"; // Файл Excel, с которым производится работа
+            Console.WriteLine("Выбрать файл?: " + fName + " ? (n for no)");
+            if (Console.ReadLine() == "n")
+            {
+                Console.WriteLine("Введите файл");
+                fName = Console.ReadLine();
+            }
+            Console.WriteLine("выполнение..");
 
             var wb = ExcelApp.Workbooks.Open(fName);
 
@@ -133,7 +142,8 @@ namespace CreateOandT
             ExcelApp.Interactive = true;
             ExcelApp.IgnoreRemoteRequests = false;
             ExcelApp.Visible = true;
-            Console.ReadLine();
+            Console.WriteLine("Для выхода нажмиту любую клавишу...");
+            Console.ReadKey();
         }
         private static int GetColumnIndex(Excel.Worksheet sheet, string columnName)
         {
