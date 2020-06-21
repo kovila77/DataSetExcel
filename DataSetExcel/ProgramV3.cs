@@ -11,6 +11,12 @@
 
 //namespace DataSetExcel
 //{
+//    //class myColumn
+//    //{
+//    //    public int value;
+//    //    public string columnName;
+//    //}
+
 //    class Program
 //    {
 //        static DateTime DTMorning = new DateTime();
@@ -171,8 +177,6 @@
 //                for (i = 2; sheet.Cells[i, 1].Value != null; i++)
 //                {
 //                    sdvhNDU.Add(ParseString(sheet.Cells[i, columnFromNDU].Text).ToArray());
-                        
-//                    sdvhNDU.Add(ParseString(sheet.Cells[i, columnFromNDU].Text).ToArray());
 
 //                    sdvhFactor.Add(ParseString(sheet.Cells[i, columnFromFactors].Text).ToArray());
 
@@ -194,11 +198,9 @@
 //                columnIndex++;
 //                resultSheet.Cells[1, columnIndex] = COLUMN_TIMEOFDAY_NAME;
 //                int res_TIMEOFDAY_PARTY = columnIndex;
-
 //                columnIndex++;
 //                resultSheet.Cells[1, columnIndex] = COLUMN_TYPEDTP_NAME;
 //                int res_TYPEDTP = columnIndex;
-
 //                columnIndex++;
 //                resultSheet.Cells[1, columnIndex] = COLUMN_ROAD_NAME;
 //                int res_ROAD = columnIndex;
@@ -209,15 +211,19 @@
 //                resultSheet.Cells[1, columnIndex] = COLUMN_METR_NAME;
 //                int res_METR = columnIndex;
 
+//                //**//
+//                //columnIndex++;
 //                int resBegin_NDU = columnIndex + 1;
 //                for (int k = 0; k < sdvhNDU.Values.Count; k++)
 //                    resultSheet.Cells[1, resBegin_NDU + k] = sdvhNDU.Values[k];
+//                //**//
 //                columnIndex += sdvhNDU.Values.Count + 1;
-//                int resBegin_FACTOR = columnIndex--;
+//                int resBegin_FACTOR = columnIndex;
 //                for (int k = 0; k < sdvhFactor.Values.Count; k++)
 //                    resultSheet.Cells[1, resBegin_FACTOR + k] = sdvhFactor.Values[k];
 
-//                columnIndex += sdvhNDU.Values.Count + sdvhFactor.Values.Count + 1;
+//                //columnIndex++;
+//                columnIndex = resBegin_FACTOR + sdvhFactor.Values.Count;
 //                resultSheet.Cells[1, columnIndex] = COLUMN_STATUSROAD_NAME;
 //                int res_STATUSROAD = columnIndex;
 //                columnIndex++;
@@ -268,7 +274,7 @@
 //                    foreach (var itm in lstNDU) newRowOfNDU[sdvhNDU[itm]] = true;
 //                    for (t = 0; t < newRowOfNDU.Length; t++) resultSheet.Cells[i, resBegin_NDU + t] = (newRowOfNDU[t] ? 1 : 0);
 
-//                    var newRowOfFactor= new bool[sdvhFactor.Values.Count];
+//                    var newRowOfFactor = new bool[sdvhFactor.Values.Count];
 //                    var lstFactor = ParseString(sheet.Cells[i, columnFromFactors].Text);
 //                    foreach (var itm in lstFactor) newRowOfFactor[sdvhFactor[itm]] = true;
 //                    for (t = 0; t < newRowOfFactor.Length; t++) resultSheet.Cells[i, resBegin_FACTOR + t] = (newRowOfFactor[t] ? 1 : 0);
@@ -288,7 +294,7 @@
 //                    string point = sheet.Cells[i, columnFromPoint].Text;
 //                    resultSheet.Cells[i, res_POINT] = (point.Trim().ToLower() == "да" ? 1 : 0);
 
-//                    var newRowOfBAD= new bool[sdvhBAD.Values.Count];
+//                    var newRowOfBAD = new bool[sdvhBAD.Values.Count];
 //                    var lstBAD = ParseString(sheet.Cells[i, columnFromBAD].Text);
 //                    foreach (var itm in lstBAD) newRowOfBAD[sdvhBAD[itm]] = true;
 //                    for (t = 0; t < newRowOfBAD.Length; t++) resultSheet.Cells[i, resBegin_BAD + t] = (newRowOfBAD[t] ? 1 : 0);
