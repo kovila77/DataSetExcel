@@ -61,7 +61,7 @@
 //            string sheetExcplanation = @"Excplanation"; // Название листа где будет обозначение данных
 
 //            Console.WriteLine("Название листа, откуда берётся информация должно быть: " + sheetName);
-//            string fName = @"C:\Users\35498\source\repos\DataSetExcel\Vse_dannye.xlsx"; // Файл Excel, с которым производится работа
+//            string fName = @"C:\Users\35498\source\repos\DataSetExcel\Neuro\NewData\DataT.xlsx"; // Файл Excel, с которым производится работа
 //            Console.WriteLine("Выбрать файл?: " + fName + " ? (n for no)");
 //            string str = Console.ReadLine();
 //            if (str == "n")
@@ -142,41 +142,42 @@
 //                ExcplanationSheet = (Excel.Worksheet)wb.Worksheets[sheetExcplanation];
 
 //                int columnFromData = GetColumnIndex(sheet, COLUMN_DATA_NAME_FROM);
-
 //                int columnFromTime = GetColumnIndex(sheet, COLUMN_TIME_NAME_FROM);
-
 //                int columnFromTypeDTP = GetColumnIndex(sheet, COLUMN_TYPEDTP_NAME_FROM);
-//                StringDifferentValueHandler sdvhTypeDTP = new StringDifferentValueHandler();
-
 //                int columnFromRoad = GetColumnIndex(sheet, COLUMN_ROAD_NAME_FROM);
-//                StringDifferentValueHandler sdvhRoad = new StringDifferentValueHandler();
-
 //                int columnFromKilometr = GetColumnIndex(sheet, COLUMN_KILOMETR_NAME_FROM);
-
 //                int columnFromMetr = GetColumnIndex(sheet, COLUMN_METR_NAME_FROM);
-
 //                int columnFromNDU = GetColumnIndex(sheet, COLUMN_NDU_NAME_FROM);
-//                StringDifferentValueHandler sdvhNDU = new StringDifferentValueHandler();
-
 //                int columnFromFactors = GetColumnIndex(sheet, COLUMN_FACTORS_NAME_FROM);
-//                StringDifferentValueHandler sdvhFactor = new StringDifferentValueHandler();
-
 //                int columnFromStatRoad = GetColumnIndex(sheet, COLUMN_STATUSROAD_NAME_FROM);
-//                StringDifferentValueHandler sdvhStatRoad = new StringDifferentValueHandler();
-
 //                int columnFromStatWeather = GetColumnIndex(sheet, COLUMN_STATUSWEATHER_NAME_FROM);
-//                StringDifferentValueHandler sdvhStatWeather = new StringDifferentValueHandler();
-
 //                int columnFromLight = GetColumnIndex(sheet, COLUMN_LIGHT_NAME_FROM);
-//                StringDifferentValueHandler sdvhLight = new StringDifferentValueHandler();
-
 //                int columnFromPoint = GetColumnIndex(sheet, COLUMN_POINT_NAME_FROM);
-
 //                int columnFromBAD = GetColumnIndex(sheet, COLUMN_BAD_NAME_FROM);
-//                StringDifferentValueHandler sdvhBAD = new StringDifferentValueHandler();
 
+//                StringDifferentValueHandler sdvhTypeDTP = new StringDifferentValueHandler();
+//                StringDifferentValueHandler sdvhRoad = new StringDifferentValueHandler();
+//                StringDifferentValueHandler sdvhNDU = new StringDifferentValueHandler();            //
+//                StringDifferentValueHandler sdvhFactor = new StringDifferentValueHandler();         //
+//                StringDifferentValueHandler sdvhStatRoad = new StringDifferentValueHandler();
+//                StringDifferentValueHandler sdvhStatWeather = new StringDifferentValueHandler();
+//                StringDifferentValueHandler sdvhLight = new StringDifferentValueHandler();
+//                StringDifferentValueHandler sdvhBAD = new StringDifferentValueHandler();            //
 //                StringDifferentValueHandler sdvhWeekDays = new StringDifferentValueHandler();
 //                sdvhWeekDays.Add(dayOfWeekMassive.ToArray());
+
+//                ///////////----------------------------////////////////////
+//                int i = 2;
+//                for (i = 2; sheet.Cells[i, 1].Value != null; i++)
+//                {
+//                    sdvhNDU.Add(ParseString(sheet.Cells[i, columnFromNDU].Text).ToArray());
+                        
+//                    sdvhNDU.Add(ParseString(sheet.Cells[i, columnFromNDU].Text).ToArray());
+
+//                    sdvhFactor.Add(ParseString(sheet.Cells[i, columnFromFactors].Text).ToArray());
+
+//                    sdvhBAD.Add(ParseString(sheet.Cells[i, columnFromBAD].Text).ToArray());
+//                }
 
 //                int columnIndex = 1;
 //                resultSheet.Cells[1, columnIndex] = COLUMN_DAY_NAME;
@@ -193,9 +194,11 @@
 //                columnIndex++;
 //                resultSheet.Cells[1, columnIndex] = COLUMN_TIMEOFDAY_NAME;
 //                int res_TIMEOFDAY_PARTY = columnIndex;
+
 //                columnIndex++;
 //                resultSheet.Cells[1, columnIndex] = COLUMN_TYPEDTP_NAME;
 //                int res_TYPEDTP = columnIndex;
+
 //                columnIndex++;
 //                resultSheet.Cells[1, columnIndex] = COLUMN_ROAD_NAME;
 //                int res_ROAD = columnIndex;
@@ -205,13 +208,16 @@
 //                columnIndex++;
 //                resultSheet.Cells[1, columnIndex] = COLUMN_METR_NAME;
 //                int res_METR = columnIndex;
-//                columnIndex++;
-//                resultSheet.Cells[1, columnIndex] = COLUMN_NDU_NAME;
-//                int res_NDU = columnIndex;
-//                columnIndex++;
-//                resultSheet.Cells[1, columnIndex] = COLUMN_FACTORS_NAME;
-//                int res_FACTOR = columnIndex;
-//                columnIndex++;
+
+//                int resBegin_NDU = columnIndex + 1;
+//                for (int k = 0; k < sdvhNDU.Values.Count; k++)
+//                    resultSheet.Cells[1, resBegin_NDU + k] = sdvhNDU.Values[k];
+//                columnIndex += sdvhNDU.Values.Count + 1;
+//                int resBegin_FACTOR = columnIndex--;
+//                for (int k = 0; k < sdvhFactor.Values.Count; k++)
+//                    resultSheet.Cells[1, resBegin_FACTOR + k] = sdvhFactor.Values[k];
+
+//                columnIndex += sdvhNDU.Values.Count + sdvhFactor.Values.Count + 1;
 //                resultSheet.Cells[1, columnIndex] = COLUMN_STATUSROAD_NAME;
 //                int res_STATUSROAD = columnIndex;
 //                columnIndex++;
@@ -223,14 +229,15 @@
 //                columnIndex++;
 //                resultSheet.Cells[1, columnIndex] = COLUMN_POINT_NAME;
 //                int res_POINT = columnIndex;
+//                //**//
 //                columnIndex++;
-//                resultSheet.Cells[1, columnIndex] = COLUMN_BAD_NAME;
-//                int res_BAD = columnIndex;
+//                int resBegin_BAD = columnIndex;
+//                for (int k = 0; k < sdvhBAD.Values.Count; k++)
+//                    resultSheet.Cells[1, resBegin_BAD + k] = sdvhBAD.Values[k];
 
-//                if (columnFromData < 0) throw new Exception("нет колонки " + COLUMN_DATA_NAME_FROM);
-
-//                int i = 2;
-//                for (i = 2; sheet.Cells[i, columnFromData].Value != null; i++)
+//                i = 2;
+//                int t;
+//                for (i = 2; sheet.Cells[i, 1].Value != null; i++)
 //                {
 //                    DateTime dt = DateTime.Parse(sheet.Cells[i, columnFromData].Text);
 //                    resultSheet.Cells[i, res_COLUMN_DAY] = dt.Day;
@@ -256,14 +263,15 @@
 
 //                    resultSheet.Cells[i, res_METR] = sheet.Cells[i, columnFromMetr].Text;
 
-//                    //sdvhNDU.Add(ParseString(sheet.Cells[i, columnFromNDU].Text).ToArray());
-//                    string ndu = sheet.Cells[i, columnFromNDU].Text;
-//                    int nduInx = sdvhNDU.Add(ndu);
-//                    resultSheet.Cells[i, res_NDU] = nduInx;
+//                    var newRowOfNDU = new bool[sdvhNDU.Values.Count];
+//                    var lstNDU = ParseString(sheet.Cells[i, columnFromNDU].Text);
+//                    foreach (var itm in lstNDU) newRowOfNDU[sdvhNDU[itm]] = true;
+//                    for (t = 0; t < newRowOfNDU.Length; t++) resultSheet.Cells[i, resBegin_NDU + t] = (newRowOfNDU[t] ? 1 : 0);
 
-//                    string fact = sheet.Cells[i, columnFromFactors].Text;
-//                    int factIndx = sdvhFactor.Add(fact);
-//                    resultSheet.Cells[i, res_FACTOR] = factIndx;
+//                    var newRowOfFactor= new bool[sdvhFactor.Values.Count];
+//                    var lstFactor = ParseString(sheet.Cells[i, columnFromFactors].Text);
+//                    foreach (var itm in lstFactor) newRowOfFactor[sdvhFactor[itm]] = true;
+//                    for (t = 0; t < newRowOfFactor.Length; t++) resultSheet.Cells[i, resBegin_FACTOR + t] = (newRowOfFactor[t] ? 1 : 0);
 
 //                    string stR = sheet.Cells[i, columnFromStatRoad].Text;
 //                    int stRINDX = sdvhStatRoad.Add(stR);
@@ -280,11 +288,15 @@
 //                    string point = sheet.Cells[i, columnFromPoint].Text;
 //                    resultSheet.Cells[i, res_POINT] = (point.Trim().ToLower() == "да" ? 1 : 0);
 
-//                    string bad = sheet.Cells[i, columnFromBAD].Text;
-//                    int badINDX = sdvhBAD.Add(bad);
-//                    resultSheet.Cells[i, res_BAD] = badINDX;
+//                    var newRowOfBAD= new bool[sdvhBAD.Values.Count];
+//                    var lstBAD = ParseString(sheet.Cells[i, columnFromBAD].Text);
+//                    foreach (var itm in lstBAD) newRowOfBAD[sdvhBAD[itm]] = true;
+//                    for (t = 0; t < newRowOfBAD.Length; t++) resultSheet.Cells[i, resBegin_BAD + t] = (newRowOfBAD[t] ? 1 : 0);
+
 //                    //if (i > 40) break;
 //                }
+
+//                ///////////----------------------------////////////////////
 
 //                int ii = 1;
 //                ExcplanationSheet.Cells[1, ii] = COLUMN_WEEK_NAME;

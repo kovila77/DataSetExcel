@@ -27,13 +27,16 @@ namespace CreateOandT
             string sheetTestName = @"Т"; // Название листа где будет обозначение данных
 
             Console.WriteLine("Название листа, откуда берётся информация должно быть: " + sheetName);
-            string fName = @"C:\Users\35498\source\repos\DataSetExcel\Neuro\Vse_dannye.xlsx"; // Файл Excel, с которым производится работа
+            string fName = @"C:\Users\35498\source\repos\DataSetExcel\Neuro\NewData\DataT.xlsx"; // Файл Excel, с которым производится работа
             Console.WriteLine("Выбрать файл?: " + fName + " ? (n for no)");
-            if (Console.ReadLine() == "n")
+            string str = Console.ReadLine();
+            if (str == "n")
             {
                 Console.WriteLine("Введите файл");
                 fName = Console.ReadLine();
             }
+
+            if (str.Contains(@":\")) { fName = str; }
             Console.WriteLine("выполнение..");
 
             var wb = ExcelApp.Workbooks.Open(fName);
@@ -67,17 +70,14 @@ namespace CreateOandT
                 ((Excel.Worksheet)wb.Worksheets.Add()).Name = sheetTestName;
                 testSheet = (Excel.Worksheet)wb.Worksheets[sheetTestName];
 
-
-                int columnIndex = 1;
                 int countOfRow = 0;
                 while (sheet.Cells[countOfRow + 1, 1].Value != null) countOfRow++;
                 List<int> teachSet = new List<int>();
-                for (int i = 2; i <= countOfRow + 1; i++)
-                    teachSet.Add(i);
+                for (int i = 2; i <= countOfRow + 1; i++) teachSet.Add(i);
                 List<int> testSet = new List<int>();
 
                 var rnd = new Random();
-                for (int i = 0; i < (int)(countOfRow * 0.2); i++)
+                for (int i = 0; i < (int)(countOfRow * 0); i++)
                 {
                     int randInt = rnd.Next(1, countOfRow);
                     if (testSet.Contains(teachSet[randInt]))
@@ -96,34 +96,36 @@ namespace CreateOandT
                     testSheet.Cells[1, counOfColumn] = "X" + counOfColumn.ToString();
                     counOfColumn++;
                 }
-                teachSheet.Cells[1, counOfColumn - 1] = "D" + 1.ToString();
-                testSheet.Cells[1, counOfColumn - 1] = "D" + 1.ToString();
+                teachSheet.Cells[1, counOfColumn - 1] = "D" + 2.ToString();
+                testSheet.Cells[1, counOfColumn - 1] = "D" + 2.ToString();
+                teachSheet.Cells[1, counOfColumn - 2] = "D" + 1.ToString();
+                testSheet.Cells[1, counOfColumn - 2] = "D" + 1.ToString();
                 counOfColumn = counOfColumn - 1;
 
-                int to = 2;
-                foreach (int i in teachSet)
+                int rowToIndex = 2;
+                foreach (int rowIndex in teachSet)
                 {
                     for (int j = 1; j <= counOfColumn; j++)
                     {
-                        teachSheet.Cells[to, j] = sheet.Cells[i, j];
+                        teachSheet.Cells[rowToIndex, j] = sheet.Cells[rowIndex, j];
                     }
-                    to++;
+                    rowToIndex++;
                 }
                 int g = GetColumnIndex(sheet, "Время");
-                teachSheet.Range[teachSheet.Cells[2, 1], teachSheet.Cells[to - 1, counOfColumn]].NumberFormat = "0";
-                teachSheet.Range[teachSheet.Cells[2, g], teachSheet.Cells[to - 1, g]].NumberFormat = "0,00";
+                teachSheet.Range[teachSheet.Cells[2, 1], teachSheet.Cells[rowToIndex - 1, counOfColumn]].NumberFormat = "0";
+                teachSheet.Range[teachSheet.Cells[2, g], teachSheet.Cells[rowToIndex - 1, g]].NumberFormat = "0,00";
 
-                to = 2;
+                rowToIndex = 2;
                 foreach (int i in testSet)
                 {
                     for (int j = 1; j <= counOfColumn; j++)
                     {
-                        testSheet.Cells[to, j] = sheet.Cells[i, j];
+                        testSheet.Cells[rowToIndex, j] = sheet.Cells[i, j];
                     }
-                    to++;
+                    rowToIndex++;
                 }
-                testSheet.Range[testSheet.Cells[2, 1], testSheet.Cells[to - 1, counOfColumn]].NumberFormat = "0";
-                testSheet.Range[testSheet.Cells[2, g], testSheet.Cells[to - 1, g]].NumberFormat = "0,00";
+                testSheet.Range[testSheet.Cells[2, 1], testSheet.Cells[rowToIndex - 1, counOfColumn]].NumberFormat = "0";
+                testSheet.Range[testSheet.Cells[2, g], testSheet.Cells[rowToIndex - 1, g]].NumberFormat = "0,00";
 
 
                 testSheet.Columns.EntireColumn.AutoFit();

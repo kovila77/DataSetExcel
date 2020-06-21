@@ -1,0 +1,181 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+
+namespace DictionaryWorck
+{
+    static class Program
+    {
+        static void Main(string[] args)
+        {
+            Stack<string> words = new Stack<string>();
+            //words.Push("Слово1");
+            //words.Push("слово1");
+            //words.Push("слово2");
+            //words.Push("Слово1, которое имеет что-то добавленное");
+            //words.Push("Слово2, которое имеет что-то добавленное");
+            //words.Push("слово2");
+            //words.Push("Слово2, которое имеет что-то добавленное");
+            //words.Push("Слово2, которое имеет что-то добавленное");
+            words.Push("Недостатки зимнего содержания, неудовлетворительное состояние обочин");
+            words.Push("Недостатки зимнего содержания, отсутствие освещения");
+            words.Push("Отсутствие недостатков транспортно-эксплуатационного состояния проезжей части");
+            words.Push("Недостатки зимнего содержания, неудовлетворительное состояние обочин, отсутствие, плохая различимость горизонтальной разметки проезжей части, неправильное применение, плохая видимость дорожных знаков");
+            words.Push("Недостатки зимнего содержания");
+            words.Push("Недостатки зимнего содержания");
+            words.Push("Отсутствие недостатков транспортно-эксплуатационного состояния проезжей части");
+            Console.WriteLine("Возможные элементы:");
+            foreach (var itm in words)
+            {
+                Console.WriteLine(itm);
+            }
+            Console.WriteLine();
+            Console.WriteLine("Элементы и их индексы:");
+
+            //HashSet<string> res = new HashSet<string>();
+            //while (words.Count > 0)
+            //{
+            //    res.Add(words.Pop().Trim().ToLower());
+            //}
+            //foreach (var itm in res)
+            //{
+            //    Console.WriteLine(itm);
+            //}
+
+            //разные строки и их индексы
+            StringDifferentValueHandler strDifValHndl = new StringDifferentValueHandler();
+            //List<List<bool>> paramof = new List<List<bool>>();
+            //List<bool> rg = new List<bool>();
+            //while (words.Count > 0)
+            //{
+            //    string word = words.Pop();
+            //    var lst = ParseString(word);
+            //    if (lst.Count < 1) continue;
+            //    var g = new List<bool>() { false };
+            //    foreach (var itm in lst)
+            //    {
+            //        int indx = strDifValHndl.Add(itm);
+            //        if (indx == strDifValHndl.Values.Count - 1)
+            //        {
+            //            g[g.Count - 1] = true;
+            //            paramof.Add(g);
+            //        }
+            //        else
+            //        {
+            //            g[g.Count - 1] = true;
+            //        }
+            //    }
+
+            //    g[]
+            //    paramof.Add(new List<bool>() { false });
+
+
+            //    Console.WriteLine(word + $" {indx}");
+            //}
+
+            foreach (var word in words)
+            {
+                var lst = ParseString(word);
+                if (lst.Count < 1) continue;
+                foreach (var itm in lst)
+                {
+                    strDifValHndl.Add(itm);
+                }
+            }
+            foreach (var item in strDifValHndl.Values)
+            {
+                Console.Write(item + "|");
+            }
+            Console.WriteLine();
+            List<bool[]> paramof = new List<bool[]>();
+            var cnt = words.Count;
+            for (int i = 0; i < cnt - 1; i++)
+            {
+                string word = words.Pop();
+                var newRow = new bool[strDifValHndl.Values.Count];
+                var lst = ParseString(word);
+                if (lst.Count < 1) continue;
+                foreach (var itm in lst)
+                {
+                    var indx = strDifValHndl[itm];
+                    newRow[indx] = true;
+                }
+                foreach (var item in newRow)
+                {
+                    Console.Write((item ? 1 : 0) + " ");
+                }
+                Console.WriteLine();
+                //paramof.Add(newRow);
+            }
+            //foreach (var word in words)
+            //{
+            //    var lst = ParseString(word);
+            //    if (lst.Count < 1) continue;
+            //    foreach (var itm in lst)
+            //    {
+            //        var indx = strDifValHndl[itm];
+            //        paramof
+            //    }
+            //}
+
+            Console.ReadKey();
+        }
+
+        public static List<string> ParseString(string str)
+        {
+            List<string> result = new List<string>();
+            //while (!string.IsNullOrEmpty(str))
+            //{
+            //}
+            //var arr = str.Split(',');
+            result.AddRange(str.Split(',').Select(x => x.RmvExtrSpaces()).Where(x => !string.IsNullOrEmpty(x)));
+
+            return result;
+        }
+
+        public static string RmvExtrSpaces(this String str)
+        {
+            if (str == null) return str;
+            str = str.Trim();
+            str = Regex.Replace(str, @"\s+", " ");
+            return str;
+        }
+    }
+
+    class StringDifferentValueHandler
+    {
+        List<string> values;
+        public int lastIndex;
+
+        public List<string> Values
+        {
+            get { return values; }
+        }
+
+        public StringDifferentValueHandler()
+        {
+            values = new List<string>();
+            lastIndex = -1;
+        }
+
+        public int Add(string newElem)
+        {
+            newElem = newElem.Trim().ToLower();
+            lastIndex = values.IndexOf(newElem);
+            if (lastIndex >= 0) return lastIndex;
+            values.Add(newElem);
+            lastIndex = values.Count - 1;
+            return lastIndex;
+        }
+
+        public int this[string key]
+        {
+            get { return values.IndexOf(values.FirstOrDefault(x => x.Trim().ToLower() == key.Trim().ToLower())); }
+            //set { storage.SetAt(key, value); }
+        }
+
+    }
+}
