@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace DataSetExcel
@@ -66,17 +67,22 @@ namespace DataSetExcel
             string sheetResultName = @"DataResult";     // Название листа откуда куда поместятся преобразованные данные
             string sheetExcplanation = @"Excplanation"; // Название листа где будет обозначение данных
 
-            Console.WriteLine("Название листа, откуда берётся информация должно быть: " + sheetName);
-            string fName = @"C:\Users\35498\source\repos\DataSetExcel\Neuro\NewData\DataT.xlsx"; // Файл Excel, с которым производится работа
-            Console.WriteLine("Выбрать файл?: " + fName + " ? (n for no)");
-            string str = Console.ReadLine();
-            if (str == "n")
-            {
-                Console.WriteLine("Введите файл");
-                fName = Console.ReadLine();
-            }
+            //Console.WriteLine("Название листа, откуда берётся информация должно быть: " + sheetName);
+            //string fName = @"C:\Users\35498\source\repos\DataSetExcel\Neuro\NewData\DataT.xlsx"; // Файл Excel, с которым производится работа
+            //Console.WriteLine("Выбрать файл?: " + fName + " ? (n for no)");
+            //string str = Console.ReadLine();
+            //if (str == "n")
+            //{
+            //    Console.WriteLine("Введите файл");
+            //    fName = Console.ReadLine();
+            //}
 
-            if (str.Contains(@":\")) { fName = str; }
+            //if (str.Contains(@":\")) { fName = str; }
+
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.InitialDirectory = @"C:\Users\35498\source\repos\DataSetExcel\Neuro\NewData\";
+            if (ofd.ShowDialog() == DialogResult.Cancel) return;
+            string fName = ofd.FileName;
 
             Console.WriteLine("выполнение..");
 
