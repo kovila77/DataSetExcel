@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<NeuroProject>
+  <NetStruct Name="NetStruct">
+    <Layer Size="16" Name="Input">
+      <ActivationFunction Type="ActivationTANH" />
+    </Layer>
+    <HiddenLayers>
+      <ActivationFunction Type="ActivationTANH" />
+      <Layer Size="9">
+        <ActivationFunction Type="ActivationTANH" />
+      </Layer>
+    </HiddenLayers>
+    <Layer Size="1" Name="Output">
+      <ActivationFunction Type="ActivationTANH" />
+    </Layer>
+  </NetStruct>
+  <TrainerConfig Type="ResilientPropagation" Name="TrainerConfig" />
+  <RandomConfig Type="AutoRandomDecorator" Name="RandomConfig" />
+  <DataProcessor Type="BatchDataProcessor" Name="DataProcessor">
+    <DataProcessor Type="SimpleFunctionalPreprocessorLogic" IsUsed="false" CorrelationSelectMode="Mean" />
+    <DataProcessor Type="LinearScale" IsUsed="true" A="-1" B="1" />
+  </DataProcessor>
+  <TrainingStopParams UseIterations="true" Iterations="1000" UseTeachError="false" TeachError="0.01" UseTestError="false" TestError="0.01" Name="TrainingStopParams" />
+  <DataSet Name="TrainData" />
+  <DataSet Name="TestData" />
+  <DataSet Name="CheckData" />
+  <DataSet Name="CalcData" />
+  <ErrorGraphData Name="ErrorGraphData" />
+  <TrainStatus TotalIterations="0" Name="NetData">
+    <Array Name="Weigths">
+      <Data Index="0" Value="0.10556253958752497" />
+      <Data Index="1" Value="0.24797821156586436" />
+      <Data Index="2" Value="0.24373962909157371" />
+      <Data Index="3" Value="0.13538454593409996" />
+      <Data Index="4" Value="0.32766007144360804" />
+      <Data Index="5" Value="0.158649122043815" />
+      <Data Index="6" Value="0.31631735065780453" />
+      <Data Index="7" Value="0.3091222382193069" />
+      <Data Index="8" Value="0.18907849245661798" />
+      <Data Index="9" Value="0.12846024673360407" />
+      <Data Index="10" Value="0.2040543664572721" />
+      <Data Index="11" Value="0.053391813073200949" />
+      <Data Index="12" Value="0.060196482824276067" />
+      <Data Index="13" Value="0.31392497417619342" />
+      <Data Index="14" Value="0.19162601140441174" />
+      <Data Index="15" Value="0.32938893293116683" />
+      <Data Index="16" Value="0.26845601339739705" />
+      <Data Index="17" Value="0.31195949204374213" />
+      <Data Index="18" Value="0.30694118957058775" />
+      <Data Index="19" Value="0.36870569195035918" />
+      <Data Index="20" Value="0.3266960448734651" />
+      <Data Index="21" Value="0.19522852305482444" />
+      <Data Index="22" Value="0.35126459013289524" />
+      <Data Index="23" Value="0.29179316635180297" />
+      <Data Index="24" Value="0.15502288600535813" />
+      <Data Index="25" Value="0.30902808657727471" />
+      <Data Index="26" Value="-0.40149855316188965" />
+      <Data Index="27" Value="0.38577650487674692" />
+      <Data Index="28" Value="0.34649719612716839" />
+      <Data Index="29" Value="0.28713374182226392" />
+      <Data Index="30" Value="0.11456294431527599" />
+      <Data Index="31" Value="0.20939491573208369" />
+      <Data Index="32" Value="0.033718043368407682" />
+      <Data Index="33" Value="0.097914171161024341" />
+      <Data Index="34" Value="0.40021746499339605" />
+      <Data Index="35" Value="0.27789844228828342" />
+      <Data Index="36" Value="0.074739285319811721" />
+      <Data Index="37" Value="0.32545831194824926" />
+      <Data Index="38" Value="0.079579607302162375" />
+      <Data Index="39" Value="0.37239761472185351" />
+      <Data Index="40" Value="0.13281263357309969" />
+      <Data Index="41" Value="0.3276533734437112" />
+      <Data Index="42" Value="0.23368888401651322" />
+      <Data Index="43" Value="0.2291541662035988" />
+      <Data Index="44" Value="0.071685500573619457" />
+      <Data Index="45" Value="0.3907068686392941" />
+      <Data Index="46" Value="0.370578047252096" />
+      <Data Index="47" Value="0.25484957533851571" />
+      <Data Index="48" Value="0.3204864434118167" />
+      <Data Index="49" Value="0.11465729974398758" />
+      <Data Index="50" Value="0.18412842322736625" />
+      <Data Index="51" Value="0.27981705072408447" />
+      <Data Index="52" Value="0.3071156721750225" />
+      <Data Index="53" Value="0.4008077164906142" />
+      <Data Index="54" Value="0.16292753014463351" />
+      <Data Index="55" Value="0.021330354329637303" />
+      <Data Index="56" Value="0.33887836546477068" />
+      <Data Index="57" Value="0.3375608555638086" />
+      <Data Index="58" Value="0.14264351875013012" />
+      <Data Index="59" Value="0.23300540042291751" />
+      <Data Index="60" Value="-0.13191255493971826" />
+      <Data Index="61" Value="0.34225354553867715" />
+      <Data Index="62" Value="0.20801428925000845" />
+      <Data Index="63" Value="0.052321202008856968" />
+      <Data Index="64" Value="0.28696919158471462" />
+      <Data Index="65" Value="0.39618039237914537" />
+      <Data Index="66" Value="0.01967376970479327" />
+      <Data Index="67" Value="0.3638032533172087" />
+      <Data Index="68" Value="0.31522845083675433" />
+      <Data Index="69" Value="0.31524851077008531" />
+      <Data Index="70" Value="0.25464964761135511" />
+      <Data Index="71" Value="0.34451864310310482" />
+      <Data Index="72" Value="0.23237988474157978" />
+      <Data Index="73" Value="0.33606451650269126" />
+      <Data Index="74" Value="0.23589305837725946" />
+      <Data Index="75" Value="0.4005636130837108" />
+      <Data Index="76" Value="0.36306058069226821" />
+      <Data Index="77" Value="-0.13260143288437404" />
+      <Data Index="78" Value="0.22010766577818355" />
+      <Data Index="79" Value="0.16583695902002096" />
+      <Data Index="80" Value="0.3399709809791357" />
+      <Data Index="81" Value="0.060487978590262156" />
+      <Data Index="82" Value="0.0652900614649302" />
+      <Data Index="83" Value="0.23183989638318078" />
+      <Data Index="84" Value="0.10300531859489763" />
+      <Data Index="85" Value="0.23626683524514852" />
+      <Data Index="86" Value="0.30380018521101809" />
+      <Data Index="87" Value="0.034431268531750464" />
+      <Data Index="88" Value="0.3365075826703478" />
+      <Data Index="89" Value="0.37888711066375874" />
+      <Data Index="90" Value="0.3405410184774697" />
+      <Data Index="91" Value="0.13869937140996008" />
+      <Data Index="92" Value="0.18281479319811911" />
+      <Data Index="93" Value="0.24809514853320183" />
+      <Data Index="94" Value="0.03139985189759481" />
+      <Data Index="95" Value="0.19208002968837948" />
+      <Data Index="96" Value="0.1196390841937028" />
+      <Data Index="97" Value="0.18136768200765624" />
+      <Data Index="98" Value="0.24935594342636169" />
+      <Data Index="99" Value="0.077026049848430991" />
+      <Data Index="100" Value="0.37103309893450087" />
+      <Data Index="101" Value="0.0067747939348873189" />
+      <Data Index="102" Value="0.34114206615571835" />
+      <Data Index="103" Value="0.0052379326417313944" />
+      <Data Index="104" Value="0.26152859378658944" />
+      <Data Index="105" Value="0.2411307217782184" />
+      <Data Index="106" Value="0.047437165982504685" />
+      <Data Index="107" Value="0.37257209732628821" />
+      <Data Index="108" Value="0.16491465811335468" />
+      <Data Index="109" Value="0.16388485871487968" />
+      <Data Index="110" Value="0.059790715291326069" />
+      <Data Index="111" Value="0.074354779020167128" />
+      <Data Index="112" Value="0.11745318978562508" />
+      <Data Index="113" Value="0.37832750138406607" />
+      <Data Index="114" Value="0.29455536109773878" />
+      <Data Index="115" Value="0.073971775794529307" />
+      <Data Index="116" Value="0.276963484073747" />
+      <Data Index="117" Value="0.37769533452078463" />
+      <Data Index="118" Value="0.3508368250679163" />
+      <Data Index="119" Value="0.050702356339566108" />
+      <Data Index="120" Value="0.09238020716812731" />
+      <Data Index="121" Value="0.38676344282699976" />
+      <Data Index="122" Value="0.027295670646860906" />
+      <Data Index="123" Value="0.33786228182695255" />
+      <Data Index="124" Value="0.37622843394657252" />
+      <Data Index="125" Value="0.11595027620139502" />
+      <Data Index="126" Value="0.16170384990498568" />
+      <Data Index="127" Value="0.38580567786233488" />
+      <Data Index="128" Value="-0.1566850042759674" />
+      <Data Index="129" Value="0.043813028688880012" />
+      <Data Index="130" Value="0.280924528890008" />
+      <Data Index="131" Value="0.18169289868461197" />
+      <Data Index="132" Value="0.36862539500337116" />
+      <Data Index="133" Value="0.14308161592975255" />
+      <Data Index="134" Value="0.19632480173947711" />
+      <Data Index="135" Value="0.33319618704424836" />
+      <Data Index="136" Value="0.12086685408850079" />
+      <Data Index="137" Value="0.060052128823198818" />
+      <Data Index="138" Value="0.37183224425054834" />
+      <Data Index="139" Value="0.26339553847063618" />
+      <Data Index="140" Value="0.18882966926264383" />
+      <Data Index="141" Value="0.33274902953868685" />
+      <Data Index="142" Value="0.27103755207235275" />
+      <Data Index="143" Value="0.1726227239554681" />
+      <Data Index="144" Value="0.31909639537243267" />
+      <Data Index="145" Value="-0.20526762932269854" />
+      <Data Index="146" Value="0.021246181624335034" />
+      <Data Index="147" Value="0.20600823346800995" />
+      <Data Index="148" Value="0.35506072908942" />
+      <Data Index="149" Value="0.16396608454253273" />
+      <Data Index="150" Value="0.31663748726858948" />
+      <Data Index="151" Value="0.14346469132687517" />
+      <Data Index="152" Value="0.2320517985936969" />
+      <Data Index="153" Value="0.19865358708679559" />
+      <Data Index="154" Value="0.38616678433426066" />
+      <Data Index="155" Value="0.385790597761458" />
+      <Data Index="156" Value="0.38100006494198335" />
+      <Data Index="157" Value="0.0032797843287657694" />
+      <Data Index="158" Value="0.030530440349115812" />
+      <Data Index="159" Value="0.14557831758519443" />
+      <Data Index="160" Value="0.079426871873232732" />
+      <Data Index="161" Value="0.063152429774126745" />
+      <Data Index="162" Value="0.034725157922992911" />
+    </Array>
+  </TrainStatus>
+</NeuroProject>
