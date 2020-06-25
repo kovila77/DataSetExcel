@@ -24,6 +24,7 @@ namespace DataSetExcel
         static DateTime DTDay = new DateTime();
         static DateTime DTEvening = new DateTime();
 
+        [STAThreadAttribute]
         static void Main(string[] args)
         {
             var ExcelApp = new Excel.Application();
